@@ -1,4 +1,4 @@
-(use srfi-95 test)
+(import srfi-95 test)
 
 (test-group
  "srfi-95"
