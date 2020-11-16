@@ -29,7 +29,7 @@ When [[https://srfi.schemers.org/srfi-32/srfi-32.html|SRFI 32 Sort Libraries]] w
 
 The table in Wikipedia [[http://en.wikipedia.org/wiki/Sorting_algorithm|Sorting algorithm]], shows that the merge-sort class of algorithms is optimal in terms of space and time asymptotic behavior except for the best case time, which is obtained at the expense of making the sort unstable.
 
-This SRFI's sort procedures operate on lists and arrays, which includes vectors; the merge procedures operate on lists.
+This SRFI's sort procedures operate on lists and arrays, which includes vectors; the {{merge}} procedures operate on lists.
 
 [[https://srfi.schemers.org/srfi-32/srfi-32.html|SRFI 32]]'s vector routines took optional arguments to restrict their operations to a subrange of the vector. [[https://srfi.schemers.org/srfi-63/srfi-63.html|SRFI 63]] shared subarrays (using make-shared-array or [[http://swiss.csail.mit.edu/~jaffer/SLIB|SLIB]]'s
 subarray) eliminate the need for these optional arguments.
@@ -38,7 +38,7 @@ The present SRFI procedures take an optional procedure argument equivalent to Co
 === Specification
 These procedures are stable when called with predicates which return #f when applied to identical arguments.
 
-The {{sorted?}}, merge, and merge! procedures consume asymptotic time and space no larger than O(N), where N is the sum of the lengths of the sequence arguments. The sort and sort! procedures consume asymptotic time and space no larger than O(N*log(N)), where N is the length of the sequence argument.
+The {{sorted?}}, {{merge}}, and merge! procedures consume asymptotic time and space no larger than O(N), where N is the sum of the lengths of the sequence arguments. The sort and sort! procedures consume asymptotic time and space no larger than O(N*log(N)), where N is the length of the sequence argument.
 
 All five functions take an optional key argument corresponding to a CL-style `&key' argument. A less? predicate with a key argument behaves like:
 
