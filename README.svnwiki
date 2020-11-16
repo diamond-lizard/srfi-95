@@ -34,7 +34,7 @@ This SRFI's sort procedures operate on lists and arrays, which includes vectors;
 [[https://srfi.schemers.org/srfi-32/srfi-32.html|SRFI 32]]'s vector routines took optional arguments to restrict their operations to a subrange of the vector. [[https://srfi.schemers.org/srfi-63/srfi-63.html|SRFI 63]] shared subarrays (using make-shared-array or [[http://swiss.csail.mit.edu/~jaffer/SLIB|SLIB]]'s
 subarray) eliminate the need for these optional arguments.
 
-The present SRFI procedures take an optional procedure argument equivalent to Common-Lisp's &KEY argument.
+The present SRFI procedures take an optional procedure argument equivalent to Common-Lisp's {{&KEY}} argument.
 === Specification
 These procedures are stable when called with predicates which return {{#f}} when applied to identical arguments.
 
