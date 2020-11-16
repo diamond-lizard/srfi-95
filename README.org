@@ -49,33 +49,31 @@ All five functions take an optional key argument corresponding to a CL-style `&k
 All five functions will call the key argument at most once per element.
 
 The `!' variants sort in place; sort! returns its sequence argument.
+*** Function: sorted? sequence less?
+*** Function: sorted? sequence less? key
+Returns #t when the sequence argument is in non-decreasing order according to less? (that is, there is no adjacent pair ... x y ... for which (less? y x)).
 
-Function: sorted? sequence less?
-Function: sorted? sequence less? key
-    Returns #t when the sequence argument is in non-decreasing order according to less? (that is, there is no adjacent pair ... x y ... for which (less? y x)).
+Returns #f when the sequence contains at least one out-of-order pair. It is an error if the sequence is not a list or array (including vectors and strings).
+*** Function: merge list1 list2 less?
+*** Function: merge list1 list2 less? key
+Merges two sorted lists, returning a freshly allocated list as its result.
+*** Function: merge! list1 list2 less?
+*** Function: merge! list1 list2 less? key
+Merges two sorted lists, re-using the pairs of list1 and list2 to build the result. The result will be either list1 or list2.
+*** Function: sort sequence less?
+*** Function: sort sequence less? key
+Accepts a list or array (including vectors and strings) for sequence; and returns a completely new sequence which is sorted according to less?. The returned sequence is the same type as the argument sequence.
+**** Given valid arguments, it is always the case that:
+#+BEGIN_SRC scheme
+(sorted? (sort sequence less?) less?) => #t
+#+END_SRC
+*** Function: sort! sequence less?
+*** Function: sort! sequence less? key
+Returns list, array, vector, or string sequence which has been mutated to order its elements according to less?. Given valid arguments, it is always the case that:
 
-    Returns #f when the sequence contains at least one out-of-order pair. It is an error if the sequence is not a list or array (including vectors and strings).
-
-Function: merge list1 list2 less?
-Function: merge list1 list2 less? key
-    Merges two sorted lists, returning a freshly allocated list as its result.
-
-Function: merge! list1 list2 less?
-Function: merge! list1 list2 less? key
-    Merges two sorted lists, re-using the pairs of list1 and list2 to build the result. The result will be either list1 or list2.
-
-Function: sort sequence less?
-Function: sort sequence less? key
-    Accepts a list or array (including vectors and strings) for sequence; and returns a completely new sequence which is sorted according to less?. The returned sequence
-    is the same type as the argument sequence. Given valid arguments, it is always the case that:
-
-    (sorted? (sort sequence less?) less?) => #t
-
-Function: sort! sequence less?
-Function: sort! sequence less? key
-    Returns list, array, vector, or string sequence which has been mutated to order its elements according to less?. Given valid arguments, it is always the case that:
-
-    (sorted? (sort! sequence less?) less?) => #t
+#+BEGIN_SRC scheme
+(sorted? (sort! sequence less?) less?) => #t
+#+END_SRC
 ** Author
  * Aubrey Jaffer
  * Ported to hygienic Chicken with test suite by Peter Danenberg
