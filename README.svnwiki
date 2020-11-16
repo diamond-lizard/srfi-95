@@ -1,0 +1,91 @@
+* SRFI-95: Sorting and Merging
+** Abstract
+Sorting and Merging are useful operations deserving a common API.
+
+For more information, see: [[https://srfi.schemers.org/srfi-95/][SRFI-95: Sorting and Merging]]
+** Issues
+  * Changed so that the algorithms are required to call key arguments no more than once per element.
+
+    As a consequence, the pair allocation constraints for sort! and merge! are removed.
+
+  * These procedures are stable only for less? predicates which return #f when applied to identical arguments. With non-empty sequence arguments, less? can easily be
+    tested. Should these procedures signal an error when given reflexive predicates? Should they silently replace less? with
+
+<enscript highlight="scheme">
+(lambda (a b) (not (less? b a)))
+</enscript>
+** Rationale
+General purpose software libraries are about simplicity and ease of use, not theoretical perfection in algorithm design. A sorting library should be specified so that its routines will perform moderately well for moderately sized inputs in the vast majority of applications.
+
+When SRFI 32 Sort Libraries was withdrawn, it had 28 procedures. Having many variants in a general-purpose sorting library has disadvantages:
+
+  * When there are only a few paths through the code, the code gets thoroughly tested and its behavior well understood. When there are many paths, most of the code is not well tested and not well understood.
+
+  * To choose optimal sort algorithms requires nearly as much understanding as to write them. Most users don't.
+
+  * A module with too many functions and voluminous documentation scares off the typical user looking to just sort a 50-element list; who then goes searching for any old sort algorithm to reinvent the wheel.
+
+  * If some of the default sorts are unstable, then users will be surprised that sorting their data twice results in different orders; or that vector and list sorts return different orders.
+
+The table in Wikipedia Sorting algorithm, shows that the merge-sort class of algorithms is optimal in terms of space and time asymptotic behavior except for the best case time, which is obtained at the expense of making the sort unstable.
+
+This SRFI's sort procedures operate on lists and arrays, which includes vectors; the merge procedures operate on lists.
+
+SRFI 32's vector routines took optional arguments to restrict their operations to a subrange of the vector. SRFI 63 shared subarrays (using make-shared-array or SLIB's
+subarray) eliminate the need for these optional arguments.
+
+The present SRFI procedures take an optional procedure argument equivalent to Common-Lisp's &KEY argument.
+** Specification
+These procedures are stable when called with predicates which return #f when applied to identical arguments.
+
+The sorted?, merge, and merge! procedures consume asymptotic time and space no larger than O(N), where N is the sum of the lengths of the sequence arguments. The sort and sort! procedures consume asymptotic time and space no larger than O(N*log(N)), where N is the length of the sequence argument.
+
+All five functions take an optional key argument corresponding to a CL-style `&key' argument. A less? predicate with a key argument behaves like:
+
+<enscript highlight="scheme">
+(lambda (x y) (less? (key x) (key y)))
+</enscript>
+
+All five functions will call the key argument at most once per element.
+
+The `!' variants sort in place; sort! returns its sequence argument.
+*** Function: sorted? sequence less?
+*** Function: sorted? sequence less? key
+Returns #t when the sequence argument is in non-decreasing order according to less? (that is, there is no adjacent pair ... x y ... for which (less? y x)).
+
+Returns #f when the sequence contains at least one out-of-order pair. It is an error if the sequence is not a list or array (including vectors and strings).
+*** Function: merge list1 list2 less?
+*** Function: merge list1 list2 less? key
+Merges two sorted lists, returning a freshly allocated list as its result.
+*** Function: merge! list1 list2 less?
+*** Function: merge! list1 list2 less? key
+Merges two sorted lists, re-using the pairs of list1 and list2 to build the result. The result will be either list1 or list2.
+*** Function: sort sequence less?
+*** Function: sort sequence less? key
+Accepts a list or array (including vectors and strings) for sequence; and returns a completely new sequence which is sorted according to less?. The returned sequence is the same type as the argument sequence.
+**** Given valid arguments, it is always the case that:
+<enscript highlight="scheme">
+(sorted? (sort sequence less?) less?) => #t
+</enscript>
+*** Function: sort! sequence less?
+*** Function: sort! sequence less? key
+Returns list, array, vector, or string sequence which has been mutated to order its elements according to less?. Given valid arguments, it is always the case that:
+
+<enscript highlight="scheme">
+(sorted? (sort! sequence less?) less?) => #t
+</enscript>
+** Author
+ * Aubrey Jaffer
+ * Ported to hygienic Chicken with test suite by Peter Danenberg
+ * Ported to Chicken 5 by Sergey Goldgaber
+** Copyright
+Copyright (C) Aubrey Jaffer 2006. All Rights Reserved.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+** Version history
+ * [[https://github.com/diamond-lizard/srfi-95/releases/tag/0.1][2.0]] - Ported to Chicken Scheme 5
+
