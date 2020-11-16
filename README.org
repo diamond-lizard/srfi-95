@@ -11,7 +11,9 @@ For more information, see: [[https://srfi.schemers.org/srfi-95/][SRFI-95: Sortin
   * These procedures are stable only for less? predicates which return #f when applied to identical arguments. With non-empty sequence arguments, less? can easily be
     tested. Should these procedures signal an error when given reflexive predicates? Should they silently replace less? with
 
-    (lambda (a b) (not (less? b a)))
+#+BEGIN_SRC scheme
+(lambda (a b) (not (less? b a)))
+#+END_SRC
 ** Rationale
 General purpose software libraries are about simplicity and ease of use, not theoretical perfection in algorithm design. A sorting library should be specified so that its routines will perform moderately well for moderately sized inputs in the vast majority of applications.
 
@@ -40,7 +42,9 @@ The sorted?, merge, and merge! procedures consume asymptotic time and space no l
 
 All five functions take an optional key argument corresponding to a CL-style `&key' argument. A less? predicate with a key argument behaves like:
 
+#+BEGIN_SRC scheme
 (lambda (x y) (less? (key x) (key y)))
+#+END_SRC
 
 All five functions will call the key argument at most once per element.
 
