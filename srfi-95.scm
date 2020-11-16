@@ -25,8 +25,11 @@ srfi-95
 
 (import scheme)
 (import (chicken base))
+(import (chicken platform))
 
 (import srfi-63)
+
+(register-feature! 'srfi-95)
 
 (include "mulapply.scm")
 
