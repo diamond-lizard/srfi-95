@@ -38,7 +38,7 @@ The present SRFI procedures take an optional procedure argument equivalent to Co
 === Specification
 These procedures are stable when called with predicates which return {{#f}} when applied to identical arguments.
 
-The {{sorted?}}, {{merge}}, and {{merge!}} procedures consume asymptotic time and space no larger than {{O(N)}}, where N is the sum of the lengths of the sequence arguments. The sort and sort! procedures consume asymptotic time and space no larger than {{O(N*log(N))}}, where N is the length of the sequence argument.
+The {{sorted?}}, {{merge}}, and {{merge!}} procedures consume asymptotic time and space no larger than {{O(N)}}, where {{N}} is the sum of the lengths of the sequence arguments. The sort and sort! procedures consume asymptotic time and space no larger than {{O(N*log(N))}}, where {{N}} is the length of the sequence argument.
 
 All five functions take an optional key argument corresponding to a CL-style {{`&key'}} argument. A {{less?}} predicate with a key argument behaves like:
 
