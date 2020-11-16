@@ -17,7 +17,7 @@ For more information, see: [[https://srfi.schemers.org/srfi-95/|SRFI-95: Sorting
 === Rationale
 General purpose software libraries are about simplicity and ease of use, not theoretical perfection in algorithm design. A sorting library should be specified so that its routines will perform moderately well for moderately sized inputs in the vast majority of applications.
 
-When SRFI 32 Sort Libraries was withdrawn, it had 28 procedures. Having many variants in a general-purpose sorting library has disadvantages:
+When [[https://srfi.schemers.org/srfi-32/srfi-32.html|SRFI 32 Sort Libraries]] was withdrawn, it had 28 procedures. Having many variants in a general-purpose sorting library has disadvantages:
 
 * When there are only a few paths through the code, the code gets thoroughly tested and its behavior well understood. When there are many paths, most of the code is not well tested and not well understood.
 
@@ -27,11 +27,11 @@ When SRFI 32 Sort Libraries was withdrawn, it had 28 procedures. Having many var
 
 * If some of the default sorts are unstable, then users will be surprised that sorting their data twice results in different orders; or that vector and list sorts return different orders.
 
-The table in Wikipedia Sorting algorithm, shows that the merge-sort class of algorithms is optimal in terms of space and time asymptotic behavior except for the best case time, which is obtained at the expense of making the sort unstable.
+The table in Wikipedia [[http://en.wikipedia.org/wiki/Sorting_algorithm|Sorting algorithm]], shows that the merge-sort class of algorithms is optimal in terms of space and time asymptotic behavior except for the best case time, which is obtained at the expense of making the sort unstable.
 
 This SRFI's sort procedures operate on lists and arrays, which includes vectors; the merge procedures operate on lists.
 
-SRFI 32's vector routines took optional arguments to restrict their operations to a subrange of the vector. SRFI 63 shared subarrays (using make-shared-array or SLIB's
+[[https://srfi.schemers.org/srfi-32/srfi-32.html|SRFI 32]]'s vector routines took optional arguments to restrict their operations to a subrange of the vector. [[https://srfi.schemers.org/srfi-63/srfi-63.html|SRFI 63]] shared subarrays (using make-shared-array or [[http://swiss.csail.mit.edu/~jaffer/SLIB|SLIB]]'s
 subarray) eliminate the need for these optional arguments.
 
 The present SRFI procedures take an optional procedure argument equivalent to Common-Lisp's &KEY argument.
