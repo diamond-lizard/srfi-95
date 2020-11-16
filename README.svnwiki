@@ -71,7 +71,7 @@ Merges two sorted lists, returning a freshly allocated list as its result.
 
 <procedure>merge! list1 list2 less? key</procedure>
 
-Merges two sorted lists, re-using the pairs of list1 and list2 to build the result. The result will be either list1 or list2.
+Merges two sorted lists, re-using the pairs of {{list1}} and {{list2}} to build the result. The result will be either {{list1}} or {{list2}}.
 
 <procedure>sort sequence less?</procedure>
 
