@@ -25,7 +25,7 @@ srfi-95
 
 (import scheme chicken)
 
-(use data-structures srfi-63)
+(import data-structures srfi-63)
 
 (include "mulapply.scm")
 
