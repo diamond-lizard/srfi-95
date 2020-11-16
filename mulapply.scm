@@ -17,7 +17,7 @@
 ;promotional, or sales literature without prior written consent in
 ;each case.
 ;@
-(define apply
+(define multiarg-apply
   (letrec ((apply-2 apply)
 	   (append-to-last
 	    (lambda (lst)

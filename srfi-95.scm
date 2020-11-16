@@ -200,7 +200,7 @@ srfi-95
   (define key (if (null? opt-key) #f (car opt-key)))
   (cond ((array? seq)
 	 (let ((dims (array-dimensions seq)))
-	   (define newra (apply make-array seq dims))
+	   (define newra (multiarg-apply make-array seq dims))
 	   (do ((sorted (sort:sort-list! (rank-1-array->list seq) less? key)
 			(cdr sorted))
 		(i 0 (+ i 1)))
