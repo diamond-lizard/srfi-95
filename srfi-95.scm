@@ -23,7 +23,8 @@
 srfi-95
 (sorted? merge merge! sort sort!)
 
-(import scheme chicken)
+(import scheme)
+(import (chicken base))
 
 (import srfi-63)
 
