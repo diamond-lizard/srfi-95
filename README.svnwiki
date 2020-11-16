@@ -4,11 +4,11 @@ Sorting and Merging are useful operations deserving a common API.
 
 For more information, see: [[https://srfi.schemers.org/srfi-95/|SRFI-95: Sorting and Merging]]
 === Issues
-  * Changed so that the algorithms are required to call key arguments no more than once per element.
+* Changed so that the algorithms are required to call key arguments no more than once per element.
 
     As a consequence, the pair allocation constraints for sort! and merge! are removed.
 
-  * These procedures are stable only for less? predicates which return #f when applied to identical arguments. With non-empty sequence arguments, less? can easily be
+* These procedures are stable only for less? predicates which return #f when applied to identical arguments. With non-empty sequence arguments, less? can easily be
     tested. Should these procedures signal an error when given reflexive predicates? Should they silently replace less? with
 
 <enscript highlight="scheme">
@@ -19,13 +19,13 @@ General purpose software libraries are about simplicity and ease of use, not the
 
 When SRFI 32 Sort Libraries was withdrawn, it had 28 procedures. Having many variants in a general-purpose sorting library has disadvantages:
 
-  * When there are only a few paths through the code, the code gets thoroughly tested and its behavior well understood. When there are many paths, most of the code is not well tested and not well understood.
+* When there are only a few paths through the code, the code gets thoroughly tested and its behavior well understood. When there are many paths, most of the code is not well tested and not well understood.
 
-  * To choose optimal sort algorithms requires nearly as much understanding as to write them. Most users don't.
+* To choose optimal sort algorithms requires nearly as much understanding as to write them. Most users don't.
 
-  * A module with too many functions and voluminous documentation scares off the typical user looking to just sort a 50-element list; who then goes searching for any old sort algorithm to reinvent the wheel.
+* A module with too many functions and voluminous documentation scares off the typical user looking to just sort a 50-element list; who then goes searching for any old sort algorithm to reinvent the wheel.
 
-  * If some of the default sorts are unstable, then users will be surprised that sorting their data twice results in different orders; or that vector and list sorts return different orders.
+* If some of the default sorts are unstable, then users will be surprised that sorting their data twice results in different orders; or that vector and list sorts return different orders.
 
 The table in Wikipedia Sorting algorithm, shows that the merge-sort class of algorithms is optimal in terms of space and time asymptotic behavior except for the best case time, which is obtained at the expense of making the sort unstable.
 
@@ -75,9 +75,9 @@ Returns list, array, vector, or string sequence which has been mutated to order 
 (sorted? (sort! sequence less?) less?) => #t
 </enscript>
 === Author
- * Aubrey Jaffer
- * Ported to hygienic Chicken with test suite by Peter Danenberg
- * Ported to Chicken 5 by Sergey Goldgaber
+* Aubrey Jaffer
+* Ported to hygienic Chicken with test suite by Peter Danenberg
+* Ported to Chicken 5 by Sergey Goldgaber
 === Copyright
 Copyright (C) Aubrey Jaffer 2006. All Rights Reserved.
 
@@ -87,5 +87,5 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 === Version history
- * [[https://github.com/diamond-lizard/srfi-95/releases/tag/0.1|2.0]] - Ported to Chicken Scheme 5
+* [[https://github.com/diamond-lizard/srfi-95/releases/tag/0.1|2.0]] - Ported to Chicken Scheme 5
 
