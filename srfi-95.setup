@@ -1,9 +1,0 @@
-;;; -*- Hen -*-
-
-(use setup-helper-mod)
-
-(verify-extension-name "srfi-95")
-
-(setup-shared-extension-module
- 'srfi-95
- (extension-version "1.4"))
