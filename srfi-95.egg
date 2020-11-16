@@ -1,0 +1,11 @@
+;;; srfi-95.egg -*- Scheme -*- vim: ft=scheme:
+
+((author "Richard A. O'Keefe, ported to hygienic Chicken with test suite by Peter Danenberg")
+ (maintainer "Sergey Goldgaber")
+ (synopsis "SRFI-95: Sorting and merging")
+ (version "2.0")
+ (category data)
+ (dependencies srfi-63)
+ (test-dependencies test)
+ (license "Public Domain")
+ (components (extension srfi-95)))
