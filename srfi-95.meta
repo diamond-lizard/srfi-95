@@ -1,8 +1,0 @@
-((egg "srfi-95.egg")
- (files "TODO" "mulapply.scm" "srfi-95.scm" "srfi-95.meta" "tests/run.scm" "srfi-95.setup")
- (category data)
- (license "Public Domain")
- (author "Richard A. O'Keefe, ported to hygienic Chicken with test suite by Peter Danenberg")
- (synopsis "Sorting and merging")
- (depends srfi-63 setup-helper)
- (test-depends test))
